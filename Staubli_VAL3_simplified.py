@@ -450,7 +450,6 @@ def test_post():
     robot.MoveL(Pose([250, 200, 278.023897, 180, 0, -150]), [-41.85389, -1.95619, -34.89154, 57.43912, 52.34162, -253.73403] )
     robot.MoveL(Pose([250, 150, 191.421356, 180, 0, -150]), [-43.82111, 3.29703, -40.29493, 56.02402, 56.61169, -249.23532] )
     robot.ProgFinish("Program")
-    robot.ProgSave(".", "someprog")
     # robot.ProgSave(".","Program",True)
     print(robot.PROG_PGX)
     if len(robot.LOG) > 0:
