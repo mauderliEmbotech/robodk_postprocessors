@@ -198,7 +198,7 @@ class RobotPost(object):
         self.addline('waitEndMove()')
         self.addline('// Program %s end' % progname)
         
-    def ProgSave(self, folder, progname, ask_user = False, show_result = False):
+    def ProgSave(self, folder, progname, ask_user = False, show_result = False, verbose=0):
         if ask_user or not DirExists(folder):
             foldersave = getSaveFolder(folder, 'Save program as...')
             if foldersave is not None and len(foldersave) > 0:
@@ -230,7 +230,8 @@ class RobotPost(object):
         fid = open(project_file, "w")
         fid.write(PROGRAM_PJX % progname)
         fid.close()
-        print('SAVED: %s\n' % project_file)
+        if verbose > 0:
+            print('SAVED: %s\n' % project_file)
         #-----------------------------------
         # program.dtx
         program_data = folderprog + '/%s.dtx' % progname
@@ -449,6 +450,7 @@ def test_post():
     robot.MoveL(Pose([250, 200, 278.023897, 180, 0, -150]), [-41.85389, -1.95619, -34.89154, 57.43912, 52.34162, -253.73403] )
     robot.MoveL(Pose([250, 150, 191.421356, 180, 0, -150]), [-43.82111, 3.29703, -40.29493, 56.02402, 56.61169, -249.23532] )
     robot.ProgFinish("Program")
+    robot.ProgSave(".", "someprog")
     # robot.ProgSave(".","Program",True)
     print(robot.PROG_PGX)
     if len(robot.LOG) > 0:
